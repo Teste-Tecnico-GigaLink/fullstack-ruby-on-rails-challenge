@@ -1,0 +1,26 @@
+services:
+  app:
+    build:
+      context: ../..
+      target: homolog
+    env_file:
+      - ../env/.homolog.env
+    ports:
+      - "4000:3000"
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1GB
+    restart: unless-stopped
+
+  db:
+    env_file:
+      - ../env/.homolog.env
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
+    volumes:
+      - homolog_db_data:/var/lib/postgresql/data
+
+volumes:
+  homolog_db_data:
