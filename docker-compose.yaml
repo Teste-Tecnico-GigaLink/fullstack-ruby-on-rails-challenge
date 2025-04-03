@@ -1,0 +1,32 @@
+services:
+  web:
+    build: .
+    command: bundle exec rails s -b '0.0.0.0'
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    env_file: .env
+    develop:
+      watch:
+        - action: rebuild
+          path: .
+    volumes:
+      - ".:/app"
+    networks:
+      - app_network
+
+  db:
+    image: postgres:latest
+    env_file: .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+volumes:
+  postgres_data:
+
+networks:
+  app_network:
+    driver: bridge
