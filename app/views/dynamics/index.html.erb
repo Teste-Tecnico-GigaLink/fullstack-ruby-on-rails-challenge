@@ -1,0 +1,24 @@
+<div class="container">
+    <h1 class="text-xl font-bold mb-4">Dinâmicas de Grupo</h1>
+    
+    <div class="flex justify-between mb-4">
+      <%= link_to 'Sortear Dinâmica', random_dynamics_path, class: 'btn btn-primary' %>
+      <%= link_to '+ Nova Dinâmica', new_dynamic_path, class: 'btn btn-outline' %>
+    </div>
+
+    <div class="grid gap-4">
+      <div class="card">
+        <div class="flex justify-between">
+          <h3 class="font-bold">Quebra-gelo</h3>
+          <div class="star-rating">★★★★☆<span class="text-sm ml-1">4.2</span></div>
+        </div>
+        <p class="text-gray mt-2">Dinâmica inicial para descontrair os participantes.</p>
+        <div class="flex gap-4 mt-4">
+          <%= link_to 'Editar', edit_dynamic_path(1), class: 'btn btn-outline' %>
+          <%= link_to 'Ver Detalhes', dynamic_path(1), class: 'btn btn-outline' %>
+          <button class="btn btn-danger">Remover</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>

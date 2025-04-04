@@ -39,6 +39,8 @@ gem "thruster", require: false
 
 gem 'dotenv', groups: [:development, :test]
 
+gem 'view_component', require: 'view_component/engine'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

@@ -1,0 +1,25 @@
+ <div class="container">
+    <h1 class="text-xl font-bold mb-6">Editar Dinâmica</h1>
+
+    <div class="card">
+      <form id="dynamic-form">
+        <div class="mb-4">
+          <label class="form-label">Nome da Dinâmica</label>
+          <input type="text" class="form-control" name="name" value="Quebra-gelo" required>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Descrição</label>
+          <textarea class="form-control" rows="4" name="description" required>
+            Dinâmica inicial para descontrair os participantes. 
+            Cada pessoa deve compartilhar uma curiosidade sobre si mesma em 1 minuto.
+          </textarea>
+        </div>
+
+        <div class="flex gap-2 mt-6">
+          <button type="submit" class="btn btn-primary">Atualizar</button>
+          <a href="show.html?id=1" class="btn btn-outline">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
