@@ -1,24 +1,30 @@
 <div class="container">
-    <h1 class="text-xl font-bold mb-4">Dinâmicas de Grupo</h1>
-    
-    <div class="flex justify-between mb-4">
-      <%= link_to 'Sortear Dinâmica', random_dynamics_path, class: 'btn btn-primary' %>
-      <%= link_to '+ Nova Dinâmica', new_dynamic_path, class: 'btn btn-outline' %>
-    </div>
+  <h1 class="text-xl font-bold mb-4">Dinâmicas de Grupo</h1>
+  
+  <div class="flex justify-between mb-4">
+    <%= link_to 'Sortear Dinâmica', random_dynamics_path, class: 'btn btn-primary' %>
+    <%= link_to '+ Nova Dinâmica', new_dynamic_path, class: 'btn btn-outline' %>
+  </div>
 
-    <div class="grid gap-4">
+  <div class="grid gap-4">
+    <% @dynamics.each do |dynamic| %>
       <div class="card">
         <div class="flex justify-between">
-          <h3 class="font-bold">Quebra-gelo</h3>
-          <div class="star-rating">★★★★☆<span class="text-sm ml-1">4.2</span></div>
+          <h3 class="font-bold"><%= dynamic.name %></h3>
+          <div class="star-rating filled">
+            <%= '★' * dynamic.average_rating.round %><%= '☆' * (5 - dynamic.average_rating.round)  %>
+            <span class="text-sm ml-1 text-gray-700"><%= dynamic.average_rating %></span>
+          </div>
         </div>
-        <p class="text-gray mt-2">Dinâmica inicial para descontrair os participantes.</p>
+        <p class="text-gray mt-2"><%= dynamic.description %></p>
         <div class="flex gap-4 mt-4">
-          <%= link_to 'Editar', edit_dynamic_path(1), class: 'btn btn-outline' %>
-          <%= link_to 'Ver Detalhes', dynamic_path(1), class: 'btn btn-outline' %>
-          <button class="btn btn-danger">Remover</button>
-          
+          <%= link_to 'Editar', edit_dynamic_path(dynamic), class: 'btn btn-outline' %>
+          <%= link_to 'Ver Detalhes', dynamic_path(dynamic), class: 'btn btn-outline' %>
+          <%= link_to 'Remover', dynamic_path(dynamic), 
+            data: { turbo_method: :delete, turbo_confirm: 'Tem certeza que deseja remover esta dinâmica?' }, 
+            class: 'btn btn-danger' %>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
+</div>
