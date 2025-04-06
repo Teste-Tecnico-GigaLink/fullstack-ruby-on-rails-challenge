@@ -1,65 +1,57 @@
- <div class="container">
-    <div class="flex justify-between items-center mb-6">
-      <h1 class="text-2xl font-bold">Quebra-gelo</h1>
+<div class="container">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold"><%= @dynamic.name %></h1>
+    <div class="flex gap-2">
       <div class="flex gap-2">
-        <a href="edit.html?id=1" class="btn btn-outline">Editar</a>
-        <button class="btn btn-danger">Remover</button>
-      </div>
+        <%= link_to 'Editar', edit_dynamic_path(@dynamic), class: 'btn btn-outline' %>
+        <%= link_to 'Remover', dynamic_path(@dynamic), 
+        data: { turbo_method: :delete, turbo_confirm: 'Tem certeza que deseja remover esta dinâmica?' }, 
+        class: 'btn btn-danger' %>
     </div>
-
-    <div class="card mb-6">
-      <p class="text-gray-700">Dinâmica inicial para descontrair os participantes. Cada pessoa deve compartilhar uma curiosidade sobre si mesma em 1 minuto.</p>
-    </div>
-
-    <div class="flex items-center gap-2 mb-4">
-      <h2 class="text-xl font-bold">Avaliações</h2>
-      <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">4.2</span>
-    </div>
-
-    <div class="space-y-4">
-      <!-- Review 1 -->
-      <div class="card">
-        <div class="flex items-center gap-2 mb-2">
-          <div class="star-rating filled">★★★★★</div>
-          <span class="text-sm text-gray-500">3 dias atrás</span>
-        </div>
-        <p>Excelente para iniciar workshops! Todos participaram ativamente.</p>
-      </div>
-
-      <!-- Review 2 -->
-      <div class="card">
-        <div class="flex items-center gap-2 mb-2">
-          <div class="star-rating filled">★★★☆☆</div>
-          <span class="text-sm text-gray-500">1 semana atrás</span>
-        </div>
-        <p>Funciona bem com grupos pequenos, mas com muitos participantes fica cansativo.</p>
-      </div>
-    </div>
-
-    <!-- Formulário de avaliação -->
-    <div class="card mt-8">
-      <h3 class="font-bold mb-4">Deixe sua avaliação</h3>
-      <form id="review-form">
-        <div class="mb-4">
-          <label class="form-label">Sua avaliação</label>
-          <div class="star-rating mb-2" id="rating-stars">
-            <span data-value="1">☆</span>
-            <span data-value="2">☆</span>
-            <span data-value="3">☆</span>
-            <span data-value="4">☆</span>
-            <span data-value="5">☆</span>
-          </div>
-          <input type="hidden" id="rating-value" name="rating">
-        </div>
-        <div class="mb-4">
-          <label class="form-label">Comentário</label>
-          <textarea class="form-control" rows="3" name="comment"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Enviar Avaliação</button>
-      </form>
-    </div>
-
-    <div class="mt-4">
-      <a href="index.html" class="btn btn-outline">← Voltar para lista</a>
     </div>
   </div>
+
+  <div class="card mb-6">
+    <p class="text-gray-700"><%= @dynamic.description %></p>
+  </div>
+
+  <div class="flex items-center gap-2 mb-4">
+    <h2 class="text-xl font-bold">Avaliações</h2>
+    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm"><%= @dynamic.average_rating %></span>
+  </div>
+
+  <div class="space-y-4">
+    <% @reviews.each do |review| %>
+      <div class="card">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="star-rating filled">
+            <%= '★' * review.rating %><%= '☆' * (5 - review.rating) %>
+          </div>
+          <span class="text-sm text-gray-500"><%= time_ago_in_words(review.created_at) %> atrás</span>
+        </div>
+        <p><%= review.comment %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="card mt-8">
+    <h3 class="font-bold mb-4">Deixe sua avaliação</h3>
+    <%= form_with(model: [@dynamic, Review.new], local: true, id: 'review-form') do |form| %>
+      <div class="mb-4">
+        <%= form.label :rating, 'Sua avaliação', class: 'form-label' %>
+        <div class="star-rating mb-2" id="rating-stars">
+          <%= form.select :rating, options_for_select(1..5), {}, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="mb-4">
+        <%= form.label :comment, 'Comentário', class: 'form-label' %>
+        <%= form.text_area :comment, class: 'form-control', rows: 3 %>
+      </div>
+      <%= form.submit 'Enviar Avaliação', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+
+  <div class="mt-4">
+    <%= link_to '← Voltar para lista', dynamics_path, class: 'btn btn-outline' %>
+  </div>
+</div>
