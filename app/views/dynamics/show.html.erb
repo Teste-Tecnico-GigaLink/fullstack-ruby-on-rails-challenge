@@ -1,0 +1,65 @@
+ <div class="container">
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-bold">Quebra-gelo</h1>
+      <div class="flex gap-2">
+        <a href="edit.html?id=1" class="btn btn-outline">Editar</a>
+        <button class="btn btn-danger">Remover</button>
+      </div>
+    </div>
+
+    <div class="card mb-6">
+      <p class="text-gray-700">Dinâmica inicial para descontrair os participantes. Cada pessoa deve compartilhar uma curiosidade sobre si mesma em 1 minuto.</p>
+    </div>
+
+    <div class="flex items-center gap-2 mb-4">
+      <h2 class="text-xl font-bold">Avaliações</h2>
+      <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">4.2</span>
+    </div>
+
+    <div class="space-y-4">
+      <!-- Review 1 -->
+      <div class="card">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="star-rating filled">★★★★★</div>
+          <span class="text-sm text-gray-500">3 dias atrás</span>
+        </div>
+        <p>Excelente para iniciar workshops! Todos participaram ativamente.</p>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="card">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="star-rating filled">★★★☆☆</div>
+          <span class="text-sm text-gray-500">1 semana atrás</span>
+        </div>
+        <p>Funciona bem com grupos pequenos, mas com muitos participantes fica cansativo.</p>
+      </div>
+    </div>
+
+    <!-- Formulário de avaliação -->
+    <div class="card mt-8">
+      <h3 class="font-bold mb-4">Deixe sua avaliação</h3>
+      <form id="review-form">
+        <div class="mb-4">
+          <label class="form-label">Sua avaliação</label>
+          <div class="star-rating mb-2" id="rating-stars">
+            <span data-value="1">☆</span>
+            <span data-value="2">☆</span>
+            <span data-value="3">☆</span>
+            <span data-value="4">☆</span>
+            <span data-value="5">☆</span>
+          </div>
+          <input type="hidden" id="rating-value" name="rating">
+        </div>
+        <div class="mb-4">
+          <label class="form-label">Comentário</label>
+          <textarea class="form-control" rows="3" name="comment"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar Avaliação</button>
+      </form>
+    </div>
+
+    <div class="mt-4">
+      <a href="index.html" class="btn btn-outline">← Voltar para lista</a>
+    </div>
+  </div>
