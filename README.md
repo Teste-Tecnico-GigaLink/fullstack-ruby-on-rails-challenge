@@ -76,13 +76,22 @@ Criei uma aplicação web para gerenciar dinâmicas de equipe, com CRUD básico,
     
 3. **Configure o .env**:
 
-    ```# PostgreSQL Configuration POSTGRES_USER=postgres POSTGRES_PASSWORD=password POSTGRES_DB=team_dynamics_development # Rails Configuration RAILS_ENV=development DATABASE_URL=postgres://postgres:password@db/team_dynamics_development # Redis Configuration REDIS_URL=redis://redis:6379/0```
+    ```
+   # PostgreSQL Configuration
+    POSTGRES_USER=postgres
+    POSTGRES_PASSWORD=password
+    POSTGRES_DB=team_dynamics_development
+    # Rails Configuration
+    RAILS_ENV=development
+    DATABASE_URL=postgres://postgres:password@db/team_dynamics_development
+    # Redis Configuration REDIS_URL=redis://redis:6379/0
+    ```
     
-4. **Configure os Arquivos de Logs e Monitoramento**:
+5. **Configure os Arquivos de Logs e Monitoramento**:
     
     - Crie promtail-config.yaml na raiz com o conteúdo fornecido anteriormente.
     - Crie prometheus.yml na raiz com o conteúdo fornecido anteriormente.
-5. **Inicie os Serviços**:
+6. **Inicie os Serviços**:
     
     ```bash
    docker-compose build docker-compose up -d
